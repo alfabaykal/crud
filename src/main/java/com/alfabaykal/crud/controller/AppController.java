@@ -4,9 +4,7 @@ import com.alfabaykal.crud.entity.User;
 import com.alfabaykal.crud.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,7 +18,7 @@ public class AppController {
         this.userService = userService;
     }
 
-    @RequestMapping("/allUsers")
+    @GetMapping("/allUsers")
     public String showAllUsers(Model model) {
 
         List<User> allUsers = userService.getAllUsers();
@@ -29,7 +27,7 @@ public class AppController {
         return "all-users-view";
     }
 
-    @RequestMapping("/addNewUser")
+    @GetMapping("/addNewUser")
     public String addNewUser(Model model) {
 
         User user = new User();
@@ -38,15 +36,15 @@ public class AppController {
         return "user-info";
     }
 
-    @RequestMapping("/saveUser")
-    public String saveUser(@ModelAttribute ("user") User user) {
+    @PostMapping("/saveUser")
+    public String saveUser(@ModelAttribute("user") User user) {
 
         userService.saveUser(user);
 
         return "redirect:/allUsers";
     }
 
-    @RequestMapping("/updateInfo")
+    @GetMapping("/updateInfo")
     public String updateUser(@RequestParam ("userId") int id, Model model) {
 
         User user = userService.getUser(id);
@@ -55,11 +53,12 @@ public class AppController {
         return "user-info";
     }
 
-    @RequestMapping("/deleteUser")
-    public String deleteUser(@RequestParam ("userId") int id) {
+    @GetMapping("/deleteUser")
+    public String deleteUser(@RequestParam("userId") int id) {
 
         userService.deleteUser(id);
 
         return "redirect:/allUsers";
     }
+
 }
