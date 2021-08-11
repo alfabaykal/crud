@@ -7,7 +7,7 @@
 <body>
 <h2>User Info</h2>
 
-<form:form action="saveUser" modelAttribute="user">
+<form:form action="saveUser" method="post" modelAttribute="user">
 
     <form:hidden path="id"/>
 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/users")
 public class AppController {
 
     private final UserService userService;
@@ -18,7 +18,7 @@ public class AppController {
         this.userService = userService;
     }
 
-    @GetMapping("/allUsers")
+    @GetMapping
     public String showAllUsers(Model model) {
 
         List<User> allUsers = userService.getAllUsers();
@@ -36,16 +36,16 @@ public class AppController {
         return "user-info";
     }
 
-    @PostMapping("/saveUser")
+    @PostMapping()
     public String saveUser(@ModelAttribute("user") User user) {
 
         userService.saveUser(user);
 
-        return "redirect:/allUsers";
+        return "redirect:/users";
     }
 
-    @GetMapping("/updateInfo")
-    public String updateUser(@RequestParam ("userId") int id, Model model) {
+    @GetMapping("/{id}")
+    public String updateUser(@PathVariable ("id") int id, Model model) {
 
         User user = userService.getUser(id);
         model.addAttribute("user", user);
@@ -53,12 +53,12 @@ public class AppController {
         return "user-info";
     }
 
-    @GetMapping("/deleteUser")
-    public String deleteUser(@RequestParam("userId") int id) {
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable("id") int id) {
 
         userService.deleteUser(id);
 
-        return "redirect:/allUsers";
+        return "redirect:/users";
     }
 
 }
