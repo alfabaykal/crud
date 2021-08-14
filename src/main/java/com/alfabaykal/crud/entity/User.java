@@ -12,6 +12,12 @@ public class User {
     @Column(name = "id")
     private int id;
 
+    @Column(name = "username")
+    private String username = "111";
+
+    @Column(name = "password")
+    private String password = "111";
+
     @Column(name = "firstName")
     private String firstName;
 

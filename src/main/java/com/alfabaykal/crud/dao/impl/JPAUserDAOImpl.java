@@ -3,13 +3,14 @@ package com.alfabaykal.crud.dao.impl;
 import com.alfabaykal.crud.dao.UserDAO;
 import com.alfabaykal.crud.entity.User;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 
 
-@Component
+@Repository
 public class JPAUserDAOImpl implements UserDAO {
 
     @PersistenceContext
